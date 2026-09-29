@@ -1,0 +1,17 @@
+# Julia
+*.ji
+*.cov
+*.mem
+*.jl.cov
+*.jl.*.cov
+
+# Julia package/development files
+deps/deps.jl
+deps/build.log
+
+# VS Code local settings
+.vscode/
+
+# OS junk
+.DS_Store
+Thumbs.db
