@@ -2,7 +2,6 @@
 using EphemerisSources
 using GLMakie
 using Dates
-using HorizonsAPI
 
 #structs
 #mutable struct Body
@@ -13,5 +12,10 @@ using HorizonsAPI
  #   z :: Float64
 #end
 
-earth_data = fetch_vectors(399; format="text")
-println(earth_data)
+#Using HorizonsAPI
+earth_data_HorizonsAPI = fetch_vectors(399; format="text")
+println(earth_data_HorizonsAPI)
+
+#Using ephemeris
+earth_data_ephemeris = ephemeris("earth", now())
+println(earth_data_ephemeris)
