@@ -1,0 +1,6 @@
+[deps]
+EphemerisSources = "858900df-f7ae-402a-aa8c-3e4ef85aa271"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+HorizonsAPI = "c15253bb-5e94-4b8b-9a02-579bb6c8e3ce"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
