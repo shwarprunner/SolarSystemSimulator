@@ -24,6 +24,7 @@ start_time = DateTime(2026, 10, 5, 0, 0, 0)
 #MERCURY
 #ephemeris fetch data
 mercury_data = ephemeris("mercury", start_time)
+println(mercury_data, "1")
 
 #defining mercury
 mercury = Body(
@@ -40,7 +41,7 @@ mercury = Body(
 #VENUS
 #ephemeris fetch data
 venus_data = ephemeris("venus", start_time)
-println(venus_data)
+println(venus_data, "2")
 
 #defining venus
 venus = Body(
@@ -57,7 +58,7 @@ venus = Body(
 #EARTH
 #ephemeris fetch data
 earth_data = ephemeris("earth", start_time)
-println(earth_data)
+println(earth_data, "3")
 
 #defining earth
 earth = Body(
@@ -71,14 +72,10 @@ earth = Body(
    earth_data.ż[1]
 )
 
-#printing set values for earth
-println(earth.x)
-println(earth.vx)
-
 #MARS
 #ephemeris fetch data
 mars_data = ephemeris("mars", start_time)
-println(mars_data)
+println(mars_data, "4")
 
 #defining mars
 mars = Body(
@@ -95,7 +92,7 @@ mars = Body(
 #JUPITER
 #ephemeris fetch data
 jupiter_data = ephemeris("jupiter", start_time)
-println(jupiter_data)
+println(jupiter_data, "5")
 
 #defining jupiter
 jupiter = Body(
@@ -112,7 +109,7 @@ jupiter = Body(
 #SATURN
 #ephemeris fetch data
 saturn_data = ephemeris("saturn", start_time)
-println(saturn_data)
+println(saturn_data, "6")
 
 #defining saturn
 saturn = Body(
@@ -129,7 +126,7 @@ saturn = Body(
 #URANUS
 #ephemeris fetch data
 uranus_data = ephemeris("uranus", start_time)
-println("uranus_data")
+println(uranus_data, "7")
 
 #defining uranus
 uranus = Body(
@@ -146,7 +143,7 @@ uranus = Body(
 #NEPTUNE
 #ephemeris fetch data
 neptune_data = ephemeris("neptune", start_time)
-println(neptune_data)
+println(neptune_data, "8")
 
 #defining neptune
 neptune = Body(
