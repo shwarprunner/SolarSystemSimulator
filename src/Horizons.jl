@@ -72,8 +72,8 @@ earth = Body(
 )
 
 #printing set values for earth
-println(earth_data.x[1])
-println(earth_data.ẋ[1])
+println(earth.x)
+println(earth.vx)
 
 #MARS
 #ephemeris fetch data
@@ -82,6 +82,7 @@ println(mars_data)
 
 #defining mars
 mars = Body(
+   "Mars",
    mars_data.x[1],
    mars_data.y[1],
    mars_data.z[1],
@@ -89,4 +90,72 @@ mars = Body(
    mars_data.ẋ[1],
    mars_data.ẏ[1],
    mars_data.ż[1]
+)
+
+#JUPITER
+#ephemeris fetch data
+jupiter_data = ephemeris("jupiter", start_time)
+println(jupiter_data)
+
+#defining jupiter
+jupiter = Body(
+   "Jupiter",
+   jupiter_data.x[1],
+   jupiter_data.y[1],
+   jupiter_data.z[1],
+
+   jupiter_data.ẋ[1],
+   jupiter_data.ẏ[1],
+   jupiter_data.ż[1]
+)
+
+#SATURN
+#ephemeris fetch data
+saturn_data = ephemeris("saturn", start_time)
+println(saturn_data)
+
+#defining saturn
+saturn = Body(
+   "Saturn",
+   saturn_data.x[1],
+   saturn_data.y[1],
+   saturn_data.z[1],
+
+   saturn_data.ẋ[1],
+   saturn_data.ẏ[1],
+   saturn_data.ż[1]
+)
+
+#URANUS
+#ephemeris fetch data
+uranus_data = ephemeris("uranus", start_time)
+println("uranus_data")
+
+#defining uranus
+uranus = Body(
+   "Uranus",
+   uranus_data.x[1],
+   uranus_data.y[1],
+   uranus_data.z[1],
+
+   uranus_data.ẋ[1],
+   uranus_data.ẏ[1],
+   uranus_data.ż[1]
+)
+
+#NEPTUNE
+#ephemeris fetch data
+neptune_data = ephemeris("neptune", start_time)
+println(neptune_data)
+
+#defining neptune
+neptune = Body(
+   "Neptune",
+   neptune_data.x[1],
+   neptune_data.y[1],
+   neptune_data.z[1],
+
+   neptune_data.ẋ[1],
+   neptune_data.ẏ[1],
+   neptune_data.ż[1]
 )
