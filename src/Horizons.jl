@@ -21,6 +21,22 @@ end
 #setting a fixed start time
 start_time = DateTime(2026, 10, 5, 0, 0, 0)
 
+#SUN
+#ephemeris fetch data
+sun_data = ephemeris("sun", start_time)
+
+#defining sun
+sun = Body(
+   "Sun",
+   sun_data.x[1],
+   sun_data.y[1],
+   sun_data.z[1],
+
+   sun_data.ẋ[1],
+   sun_data.ẏ[1],
+   sun_data.ż[1]
+)
+
 #MERCURY
 #ephemeris fetch data
 mercury_data = ephemeris("mercury", start_time)
@@ -148,3 +164,28 @@ neptune = Body(
    neptune_data.ẏ[1],
    neptune_data.ż[1]
 )
+
+#combining bodies into array
+bodies = [
+   sun,
+   mercury,
+   venus,
+   earth,
+   mars,
+   jupiter,
+   saturn,
+   uranus,
+   neptune
+]
+
+for body in bodies
+   println(body.name)
+   
+   println(body.x)
+   println(body.y)
+   println(body.z)
+   
+   println(body.vx)
+   println(body.vy)
+   println(body.vz)
+end
