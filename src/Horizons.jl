@@ -5,21 +5,36 @@ using Dates
 
 #structs
 mutable struct Body
-     name :: String
+   name :: String
 
-    #position in AU
-    x :: Float64
-    y :: Float64
-    z :: Float64
+   #mass in solar masses
+   m :: Float64
 
-    #velocity in AU/day
-    vx :: Float64
-    vy :: Float64
-    vz :: Float64
+   #position in AU
+   x :: Float64
+   y :: Float64
+   z :: Float64
+
+   #velocity in AU/day
+   vx :: Float64
+   vy :: Float64
+   vz :: Float64
 end
 
 #setting a fixed start time
-start_time = DateTime(2026, 10, 5, 0, 0, 0)
+start_time = now()
+#start_time = DateTime(2026, 10, 5, 0, 0, 0)
+
+#masses in solar masses
+const initial_sun_mass = 1.0
+const mercury_mass = 1.6601e-7
+const venus_mass = 2.4478e-6
+const earth_mass = 3.0035e-6
+const mars_mass = 3.2272e-7
+const jupiter_mass = 9.5479e-4
+const saturn_mass = 2.8589e-4
+const uranus_mass = 4.3662e-5
+const neptune_mass = 5.1514e-5
 
 #SUN
 #ephemeris fetch data
@@ -28,6 +43,9 @@ sun_data = ephemeris("sun", start_time)
 #defining sun
 sun = Body(
    "Sun",
+
+   initial_sun_mass,
+
    sun_data.x[1],
    sun_data.y[1],
    sun_data.z[1],
@@ -44,6 +62,9 @@ mercury_data = ephemeris("mercury", start_time)
 #defining mercury
 mercury = Body(
    "Mercury",
+
+   mercury_mass,
+
    mercury_data.x[1],
    mercury_data.y[1],
    mercury_data.z[1],
@@ -60,6 +81,9 @@ venus_data = ephemeris("venus", start_time)
 #defining venus
 venus = Body(
    "Venus",
+
+   venus_mass,
+
    venus_data.x[1],
    venus_data.y[1],
    venus_data.z[1],
@@ -76,6 +100,9 @@ earth_data = ephemeris("earth", start_time)
 #defining earth
 earth = Body(
    "Earth",
+
+   earth_mass,
+
    earth_data.x[1],
    earth_data.y[1],
    earth_data.z[1],
@@ -92,6 +119,9 @@ mars_data = ephemeris("mars", start_time)
 #defining mars
 mars = Body(
    "Mars",
+
+   mars_mass,
+
    mars_data.x[1],
    mars_data.y[1],
    mars_data.z[1],
@@ -108,6 +138,9 @@ jupiter_data = ephemeris("jupiter", start_time)
 #defining jupiter
 jupiter = Body(
    "Jupiter",
+
+   jupiter_mass,
+   
    jupiter_data.x[1],
    jupiter_data.y[1],
    jupiter_data.z[1],
@@ -124,6 +157,9 @@ saturn_data = ephemeris("saturn", start_time)
 #defining saturn
 saturn = Body(
    "Saturn",
+
+   saturn_mass,
+
    saturn_data.x[1],
    saturn_data.y[1],
    saturn_data.z[1],
@@ -140,6 +176,9 @@ uranus_data = ephemeris("uranus", start_time)
 #defining uranus
 uranus = Body(
    "Uranus",
+
+   uranus_mass,
+
    uranus_data.x[1],
    uranus_data.y[1],
    uranus_data.z[1],
@@ -156,6 +195,9 @@ neptune_data = ephemeris("neptune", start_time)
 #defining neptune
 neptune = Body(
    "Neptune",
+
+   neptune_mass,
+
    neptune_data.x[1],
    neptune_data.y[1],
    neptune_data.z[1],
@@ -180,6 +222,8 @@ bodies = [
 
 for body in bodies
    println(body.name)
+
+   println(body.m)
    
    println(body.x)
    println(body.y)
