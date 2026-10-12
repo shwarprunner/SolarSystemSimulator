@@ -1,8 +1,3 @@
-#julia packages i will use
-using EphemerisSources
-using GLMakie
-using Dates
-
 #SUN
 #ephemeris fetch data
 sun_data = ephemeris("sun", start_time)
