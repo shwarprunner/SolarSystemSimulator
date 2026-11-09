@@ -239,3 +239,45 @@ for body in bodies
    println(body.vy)
    println(body.vz)
 end
+
+#Gravity
+const G = 2.959122082855911e-4
+
+function calculate_gravity(bodies)
+
+    for body in bodies
+
+        println("Calculating gravity on ", body.name)
+
+        total_ax = 0.0
+        total_ay = 0.0
+        total_az = 0.0
+        for accelerator_body in bodies
+
+         if body === accelerator_body
+            continue
+         end
+
+         #calculation
+
+         dx = accelerator_body.x - body.x
+         dy = accelerator_body.y - body.y
+         dz = accelerator_body.z - body.z
+
+         r_squared = dx^2 + dy^2 + dz^2
+         r = sqrt(r_squared)
+
+         az = G * accelerator_body.m * dz / r^3
+         ax = G * accelerator_body.m * dx / r^3
+         ay = G * accelerator_body.m * dy / r^3
+
+         total_ax += ax
+         total_ay += ay
+         total_az += az
+
+         println(accelerator_body.name, ax, ay, az)
+      end
+   end
+end
+
+calculate_gravity(bodies)
