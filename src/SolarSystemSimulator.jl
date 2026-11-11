@@ -238,6 +238,7 @@ for body in bodies
    println(body.vx)
    println(body.vy)
    println(body.vz)
+   println()
 end
 
 #Gravity
@@ -247,6 +248,8 @@ function calculate_gravity(bodies)
 
     for body in bodies
 
+        println()
+        println()
         println("Calculating gravity on ", body.name)
 
         total_ax = 0.0
@@ -275,8 +278,19 @@ function calculate_gravity(bodies)
          total_ay += ay
          total_az += az
 
-         println(accelerator_body.name, ax, ay, az)
+         println(
+         accelerator_body.name,
+          ": ",
+          ax, ", ",
+          ay, ", ",
+          az
+         )
       end
+      println()
+      println("Total acceleration x-axis", total_ax)
+      println("Total acceleration y-axis", total_ay)
+      println("Total acceleration z-axis", total_az)
+      println()
    end
 end
 
