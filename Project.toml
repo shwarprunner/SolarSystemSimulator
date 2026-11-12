@@ -1,4 +1,6 @@
 [deps]
+DBInterface = "a10d1c49-ce27-4219-8d33-6db1a4562965"
+DuckDB = "d2f5444f-75bc-4fdf-ac35-56f514c445e1"
 EphemerisSources = "858900df-f7ae-402a-aa8c-3e4ef85aa271"
 GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
