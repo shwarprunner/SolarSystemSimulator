@@ -84,12 +84,12 @@ function run_import(objects)
     start_year = 1499
     stop_year = start_year
 
-    #loop that automates the process, 64 times in chunks of 16 years
+    #loop that automates the process in chunks of 10 years
     while start_year < 2523
 
         #test range
         start_time = DateTime(start_year, 2, 2, 0, 0, 0)
-        stop_year = min(start_year + 16, 2523)
+        stop_year = min(start_year + 10, 2523)
         stop_time = DateTime(stop_year, 2, 2, 0, 0, 0)
 
         data_import(objects, start_time, stop_time, start_year, stop_year)
