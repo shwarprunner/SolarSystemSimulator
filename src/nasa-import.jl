@@ -6,26 +6,26 @@ using DBInterface
 #making a struct with id
 mutable struct Name
     id :: Int64
-    name :: Symbol
+    horizons_id :: Int64
 end
 
 #making an array to automate assigning structs
 objects = [
-    Name(1, :sun),
-    Name(2, :mercury),
-    Name(3, :venus),
-    Name(4, :earth),
-    Name(5, :mars),
-    Name(6, :jupiter),
-    Name(7, :saturn),
-    Name(8, :uranus),
-    Name(9, :neptune)
+    Name(1, 10),
+    Name(2, 1),
+    Name(3, 2),
+    Name(4, 3),
+    Name(5, 4),
+    Name(6, 5),
+    Name(7, 6),
+    Name(8, 7),
+    Name(9, 8)
 ]
 
 #function that runs inside loop
 function data_import(objects, start_time, stop_time, start_year, stop_year)
     for body in objects
-        data = ephemeris(body.name, start_time, stop_time, Hour(1); units = "AU-D")
+        data = ephemeris(body.horizons_id, start_time, stop_time, Hour(1); units = "AU-D")
 
         db = DBInterface.connect(DuckDB.DB, "data/solar_system.duckdb")
 
@@ -71,7 +71,7 @@ function data_import(objects, start_time, stop_time, start_year, stop_year)
         """)
         DBInterface.close(db)
 
-        println("finished with", " ", body.name, "for", " ", start_year, " ", "to", " ", stop_year)
+        println("finished with body numbered", " ", body.horizons_id, " ", "from", " ", start_year, " ", "to", " ", stop_year)
     end
 end
 
