@@ -22,14 +22,11 @@ objects = [
     Name(9, :neptune)
 ]
 
-#test range
-start_time = DateTime(2011, 2, 2, 0, 0, 0)
-stop_time = DateTime(2021, 2, 2, 0, 0, 0)
-
-function data_import(objects)
+#function that runs inside loop
+function data_import(objects, start_time, stop_time, start_year, stop_year)
     for body in objects
         data = ephemeris(body.name, start_time, stop_time, Hour(1); units = "AU-D")
-        
+
         db = DBInterface.connect(DuckDB.DB, "data/solar_system.duckdb")
 
         DBInterface.execute(db, """     
@@ -43,8 +40,8 @@ function data_import(objects)
                 vx DOUBLE,
                 vy DOUBLE,
                 vz DOUBLE
-           );
-               """)
+        );
+            """)
         appender = DuckDB.Appender(db, "import_states")
 
         for i in eachindex(data.t)
@@ -74,10 +71,25 @@ function data_import(objects)
         """)
         DBInterface.close(db)
 
-        println("finished with", " ", body.name)
+        println("finished with", " ", body.name, "for", " ", start_year, " ", "to", " ", stop_year)
     end
 end
 
-data_import(objects)
 
-#not typo
+#start year
+start_year = 1499
+stop_year = start_year
+
+#loop that automates the process, 64 times in chunks of 16 years
+while start_year < 2523
+    #test range
+    start_time = DateTime(start_year, 2, 2, 0, 0, 0)
+    stop_year = min(start_year + 16, 2523)
+    stop_time = DateTime(stop_year, 2, 2, 0, 0, 0)
+
+    data_import(objects, start_time, stop_time, start_year, stop_year)
+
+    start_year = stop_year
+end
+
+println("done")
