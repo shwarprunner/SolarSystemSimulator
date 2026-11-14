@@ -76,20 +76,28 @@ function data_import(objects, start_time, stop_time, start_year, stop_year)
 end
 
 
-#start year
-start_year = 1499
-stop_year = start_year
 
-#loop that automates the process, 64 times in chunks of 16 years
-while start_year < 2523
-    #test range
-    start_time = DateTime(start_year, 2, 2, 0, 0, 0)
-    stop_year = min(start_year + 16, 2523)
-    stop_time = DateTime(stop_year, 2, 2, 0, 0, 0)
+#function for the loop
+function run_import(objects)
 
-    data_import(objects, start_time, stop_time, start_year, stop_year)
+    #start year
+    start_year = 1499
+    stop_year = start_year
 
-    start_year = stop_year
+    #loop that automates the process, 64 times in chunks of 16 years
+    while start_year < 2523
+
+        #test range
+        start_time = DateTime(start_year, 2, 2, 0, 0, 0)
+        stop_year = min(start_year + 16, 2523)
+        stop_time = DateTime(stop_year, 2, 2, 0, 0, 0)
+
+        data_import(objects, start_time, stop_time, start_year, stop_year)
+
+        start_year = stop_year
+    end
+
+    println("done")
 end
 
-println("done")
+run_import(objects)
