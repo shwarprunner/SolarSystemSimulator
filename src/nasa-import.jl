@@ -9,9 +9,6 @@ mutable struct Name
     name :: Symbol
 end
 
-#defining id
-id = 1
-
 #making an array to automate assigning structs
 objects = [
     Name(1, :sun),
@@ -31,20 +28,8 @@ stop_time = DateTime(2021, 2, 2, 0, 0, 0)
 
 function data_import(objects)
     for body in objects
-        data = ephemeris(body, start_time, stop_time, Hour(1); units = "AU-D")
-
-        println(length(data.t))
-        println(data.t[1])
-        println(data.cal[1])
-
-        println(data.x[1])
-        println(data.y[1])
-        println(data.z[1])
-
-        println(data.ẋ[1])
-        println(data.ẏ[1])
-        println(data.ż[1])
-
+        data = ephemeris(body.name, start_time, stop_time, Hour(1); units = "AU-D")
+        
         db = DBInterface.connect(DuckDB.DB, "data/solar_system.duckdb")
 
         DBInterface.execute(db, """     
