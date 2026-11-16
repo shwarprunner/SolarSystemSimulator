@@ -63,7 +63,8 @@ julian_date = datetime2julian(date_time)
 #masses in solar masses
 const sun_mass_loss = 2.8657616892911014e-21
 const initial_sun_mass = 1.0
-const sun_mass = Ref(initial_sun_mass)
+const sun_mass = 1.0
+#const sun_mass = Ref(initial_sun_mass)
 const mercury_mass = 1.6601e-7
 const venus_mass = 2.4478e-6
 const earth_mass = 3.0035e-6
@@ -307,19 +308,20 @@ else
    )
    julian_date = first(closest_result).epoch_julian
 
+   #defining the bodies
    sunDB = DBInterface.execute(
       db,
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id = 1
+      WHERE epoch_julian = ? AND body_id = 1
       """,
       (julian_date,)
    )
 
    for row in sunDB
       global sun = Body(
-         body_id,
+         row.body_id,
          0.0046504673,
 
          "sun",
@@ -342,13 +344,13 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 2
+      WHERE epoch_julian = ? AND body_id = 2
       """,
       (julian_date,)
    )
    for row in mercuryDB
       global mercury = Body(
-         body_id,
+         row.body_id,
          1.6306382e-5,
 
          "mercury",
@@ -371,14 +373,14 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 3
+      WHERE epoch_julian = ? AND body_id = 3
       """,
       (julian_date,)
    )
 
    for row in venusDB
       global venus = Body(
-         body_id,
+         row.body_id,
          4.0453784e-5,
 
          "venus",
@@ -401,14 +403,14 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 4
+      WHERE epoch_julian = ? AND body_id = 4
       """,
       (julian_date,)
    )
 
    for row in earthDB
       global earth = Body(
-         body_id,
+         row.body_id,
          4.2587561e-5,
 
          "earth",
@@ -431,14 +433,14 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 5
+      WHERE epoch_julian = ? AND body_id = 5
       """,
       (julian_date,)
    )
 
    for row in marsDB
       global mars = Body(
-         body_id,
+         row.body_id,
          2.2657408e-5,
 
          "mars",
@@ -461,14 +463,14 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 6
+      WHERE epoch_julian = ? AND body_id = 6
       """,
       (julian_date,)
    )
 
    for row in jupiterDB
       global jupiter = Body(
-         body_id,
+         row.body_id,
          0.00046732617,
 
          "jupiter",
@@ -491,14 +493,14 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 7
+      WHERE epoch_julian = ? AND body_id = 7
       """,
       (julian_date,)
    )
 
    for row in saturnDB
       global saturn = Body(
-         body_id,
+         row.body_id,
          0.00038925688,
 
          "saturn",
@@ -521,14 +523,14 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 8
+      WHERE epoch_julian = ? AND body_id = 8
       """,
       (julian_date,)
    )
 
    for row in uranusDB
       global uranus = Body(
-         body_id,
+         row.body_id,
          0.00016953450,
 
          "uranus",
@@ -551,14 +553,14 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian IS ? AND body_id IS 9
+      WHERE epoch_julian = ? AND body_id = 9
       """,
       (julian_date,)
    )
 
    for row in neptuneDB
       global neptune = Body(
-         body_id,
+         row.body_id,
          0.00016458790,
 
          "neptune",
