@@ -294,12 +294,25 @@ else
       "data/solar_system.duckdb"
    )
 
+   #making julian time correspond to that in the database
+   closest_result = DBInterface.execute(
+      db,
+      """
+      SELECT epoch_julian
+      FROM nasa_states
+      ORDER BY ABS(epoch_julian - ?)
+      LIMIT 1
+      """,
+      (julian_date,)
+   )
+   julian_date = first(closest_result).epoch_julian
+
    sunDB = DBInterface.execute(
       db,
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian= ? AND body_id = 1
+      WHERE epoch_julian IS ? AND body_id = 1
       """,
       (julian_date,)
    )
@@ -329,7 +342,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 2
+      WHERE epoch_julian IS ? AND body_id IS 2
       """,
       (julian_date,)
    )
@@ -358,7 +371,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 3
+      WHERE epoch_julian IS ? AND body_id IS 3
       """,
       (julian_date,)
    )
@@ -388,7 +401,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 4
+      WHERE epoch_julian IS ? AND body_id IS 4
       """,
       (julian_date,)
    )
@@ -418,7 +431,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 5
+      WHERE epoch_julian IS ? AND body_id IS 5
       """,
       (julian_date,)
    )
@@ -448,7 +461,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 6
+      WHERE epoch_julian IS ? AND body_id IS 6
       """,
       (julian_date,)
    )
@@ -478,7 +491,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 7
+      WHERE epoch_julian IS ? AND body_id IS 7
       """,
       (julian_date,)
    )
@@ -508,7 +521,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 8
+      WHERE epoch_julian IS ? AND body_id IS 8
       """,
       (julian_date,)
    )
@@ -538,7 +551,7 @@ else
       """
       SELECT *
       FROM nasa_states
-      WHERE epoch_julian = ? AND body_id = 9
+      WHERE epoch_julian IS ? AND body_id IS 9
       """,
       (julian_date,)
    )
