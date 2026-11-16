@@ -52,35 +52,35 @@ else
 end
 #defining date time
 if date_type_choice == 1
-   date_time = DateTime(now_time)
+   start_time = DateTime(now_time)
 else
-   date_time = DateTime(year, month, day, hour, 0, 0)
+   start_time = DateTime(year, month, day, hour, 0, 0)
 end
 
 #converting to julian time
-julian_date = datetime2julian(date_time)
+julian_date = datetime2julian(start_time)
 
-#masses in solar masses
+#masses in solar masses of each planet's systems, meaning them and their moons.
 const sun_mass_loss = 2.8657616892911014e-21
 const initial_sun_mass = 1.0
 const sun_mass = 1.0
 #const sun_mass = Ref(initial_sun_mass)
-const mercury_mass = 1.6601e-7
-const venus_mass = 2.4478e-6
-const earth_mass = 3.0035e-6
-const mars_mass = 3.2272e-7
-const jupiter_mass = 9.5479e-4
-const saturn_mass = 2.8589e-4
-const uranus_mass = 4.3662e-5
-const neptune_mass = 5.1514e-5
+const mercury_mass = 1.6601208255e-7
+const venus_mass = 2.4478382878e-6
+const earth_mass = 3.0404326489e-6
+const mars_mass = 3.2271560829e-7
+const jupiter_mass = 9.5479190994e-4
+const saturn_mass = 2.8588567002e-4
+const uranus_mass = 4.3662496132e-5
+const neptune_mass = 5.1513837727e-5
 
 #accounting for solar mass loss, when i add dt for time control i will implement this loop
 #while true
 #   sun_mass[] = sun_mass[] - sun_mass_loss
 #end
 
-println("chose mode, 1 for database, 2 for live call")
-mode = readline()
+println("1: database | 2: live call")
+mode = parse(Int64, readline())
 #option for database vs live call
 if mode == 2
    #SUN
@@ -301,6 +301,7 @@ else
       """
       SELECT epoch_julian
       FROM nasa_states
+      WHERE body_id = 1
       ORDER BY ABS(epoch_julian - ?)
       LIMIT 1
       """,
@@ -577,8 +578,9 @@ else
          row.vz
       )
    end
-end
    DBInterface.close(db)
+end
+
 
 #combining bodies into array
 bodies = [
