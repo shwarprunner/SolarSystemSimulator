@@ -595,31 +595,12 @@ bodies = [
    neptune
 ]
 
-for body in bodies
-   println(body.name)
-
-   println(body.m)
-   
-   println(body.x)
-   println(body.y)
-   println(body.z)
-   
-   println(body.vx)
-   println(body.vy)
-   println(body.vz)
-   println()
-end
-
 #Gravity
 const G = 2.959122082855911e-4
 
 function calculate_gravity(bodies)
 
     for body in bodies
-
-        println()
-        println()
-        println("Calculating gravity on ", body.name)
 
         total_ax = 0.0
         total_ay = 0.0
@@ -655,11 +636,6 @@ function calculate_gravity(bodies)
           az
          )
       end
-      println()
-      println("Total acceleration x-axis", total_ax)
-      println("Total acceleration y-axis", total_ay)
-      println("Total acceleration z-axis", total_az)
-      println()
    end
 end
 
